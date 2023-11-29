@@ -136,7 +136,7 @@ class StateFlow_NativeTest {
             log("started ...")
             emit(payload)
         }.stateIn(
-            scope = this,
+            scope = this, // started를 WhileSubscribed 로 할때 test
             // What if using Early or WhileSubscribed?
             started = SharingStarted.Eagerly,
             initialValue = null

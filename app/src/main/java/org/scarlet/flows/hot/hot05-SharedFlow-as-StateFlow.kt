@@ -11,12 +11,19 @@ import org.scarlet.util.log
 /**
  * ## Make SharedFlow as StateFLow
  */
+// StateFlow는 LiveData와 완전 비슷 하고 할 수 있는 일이 더 많다.
+// 그래서 LiveData는 점 차 deprecated되고 있는 상황이다.
+// 더 많은 위치(View, ViewModel 이외에도 사용가능하다.)
+
+// 이녀석은 SharedFlow를 StateFlow처럼 사용하는 부분이다.
 object SharedFlow_As_StateFlow {
 
     private val _stateFlow = MutableStateFlow<Resource<Int>>(Resource.Empty)
-    val stateFlow: StateFlow<Resource<Int>> = _stateFlow
+//    val stateFlow: StateFlow<Resource<Int>> = _stateFlow
+    val stateFlow = _stateFlow.asStateFlow()
 
     // MutableStateFlow(initialValue) is a shared flow with the following parameters:
+    // 이게 뭐여?
     private val _sharedFlow = MutableSharedFlow<Resource<Int>>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST

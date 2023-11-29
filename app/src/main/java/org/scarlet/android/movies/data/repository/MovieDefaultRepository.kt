@@ -20,6 +20,7 @@ class MovieDefaultRepository private constructor(
     private val localDataSource: LocalDataSource,
 ) : MovieRepository {
 
+    // TODO replace deprecated API
     private val queryChannel = ConflatedBroadcastChannel<String>()
 
     override fun searchMovies(query: String) {

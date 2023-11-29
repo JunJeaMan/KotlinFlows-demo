@@ -140,7 +140,7 @@ object SharedFlow_replayCache {
     @JvmStatic
     fun main(args: Array<String>) = runBlocking {
         val mutableSharedFlow = MutableSharedFlow<Int>(
-            replay = 0, // 0, 1, 2
+            replay = 1, // 0, 1, 2
             onBufferOverflow = BufferOverflow.SUSPEND // Change to DROP_OLDEST
         )
 
@@ -175,8 +175,8 @@ object SharedFlow_replayCache {
 object SharedFlow_Multiple_Subscribers {
 
     private val sharedFlow = MutableSharedFlow<Int>(
-        replay = 0, // 0, 1, 2
-        extraBufferCapacity = 0,
+        replay = 2, // 0, 1, 2
+        extraBufferCapacity = 2,
         onBufferOverflow = BufferOverflow.SUSPEND
         // DROP_OLDEST does not guarantee receivers accept all equal # of values.
     )

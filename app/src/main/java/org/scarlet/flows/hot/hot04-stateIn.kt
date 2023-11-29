@@ -100,6 +100,8 @@ object Suspendingfunction_StateIn {
 
     private suspend fun hotFlowDemo() = coroutineScope {
         // Note that this `stateIn` is a suspending function
+        // 첫번째 data 가 emit 되면 coroutine resume 된다.
+        // 그래서 initial value 가 필요 없다.
         val greetingState = greetingFlow.stateIn(this)
 
         val subscriber1 = launch {
@@ -198,7 +200,7 @@ object WhileSubscribed_Demo {
 
         val stateFlow: StateFlow<Int?> = coldFlow.stateIn(
             scope = this,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 1_000),
+            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 3_000),
             initialValue = null
         )
 
@@ -230,8 +232,8 @@ object WhileSubscribed_Demo {
         log("Cancel subscriber2 ...")
         subscriber2.cancelAndJoin()
 
-//        log(coroutineContext.job.children.toList())  // Check to see who is the culprit.
-//        coroutineContext.job.cancelChildren()
+        log(coroutineContext.job.children.toList())  // Check to see who is the culprit.
+        coroutineContext.job.cancelChildren()
     }
 }
 

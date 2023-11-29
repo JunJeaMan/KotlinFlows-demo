@@ -1,0 +1,5 @@
+이 폴더 아래 내용들 다 테스트 해보기
+OneShot event 는 뭔가?
+
+Single live event
+Persistant data를 유지하는것과 Lastest event를 유지하는 목적으로 한다.
